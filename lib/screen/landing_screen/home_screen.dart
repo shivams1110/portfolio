@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/resource/constant.dart';
+import 'package:portfolio/util/portfolio_utils.dart';
 import 'package:portfolio/widgets/icon_with_url.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -20,47 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Row(
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            'I\'m \nShivam Sharma',
-                            style: GoogleFonts.muli(
-                                color: Colors.white,
-                                fontSize: 48,
-                                fontWeight: FontWeight.w100),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            'Android\nDeveloper',
-                            textAlign: TextAlign.end,
-                            style: GoogleFonts.muli(
-                                color: Colors.white,
-                                fontSize: 48,
-                                fontWeight: FontWeight.w100),
-                          ),
-                          SizedBox(
-                            height: 16,
-                          ),
-                          ElevatedButton(
-                            onPressed: () {},
-                            child: Text(
-                              'Contact me',
-                              style: GoogleFonts.muli(
-                                  color: Colors.white,
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w100),
-                            ),
-                          ),
-                          Image.asset(
-                            'assets/images/flutter_avater.png',
-                            height: 300,
-                            width: 300,
-                          )
-                        ],
-                      ),
+                      getIntroWidget(),
                       Expanded(child: Container()),
                       getImageList()
                     ],
@@ -70,53 +33,50 @@ class _HomeScreenState extends State<HomeScreen> {
             : SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'I\'m \nShivam Sharma',
-                          style: GoogleFonts.muli(
-                              color: Colors.white,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w100),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Text(
-                          'Android\nDeveloper',
-                          textAlign: TextAlign.end,
-                          style: GoogleFonts.muli(
-                              color: Colors.white,
-                              fontSize: 48,
-                              fontWeight: FontWeight.w100),
-                        ),
-                        SizedBox(
-                          height: 16,
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          child: Text(
-                            'Contact me',
-                            style: GoogleFonts.muli(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w100),
-                          ),
-                        ),
-                        Image.asset(
-                          'assets/images/flutter_avater.png',
-                          height: 300,
-                          width: 300,
-                        )
-                      ],
-                    ),
-                    getImageList()
-                  ],
+                  children: [getIntroWidget(), getImageList()],
                 ),
               ),
       ),
+    );
+  }
+
+  Widget getIntroWidget() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          AppLocalizations.of(context).myName,
+          style: GoogleFonts.muli(
+              color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        Text(
+          AppLocalizations.of(context).developer,
+          textAlign: TextAlign.end,
+          style: GoogleFonts.muli(
+              color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
+        ),
+        SizedBox(
+          height: 16,
+        ),
+        ElevatedButton(
+          onPressed: () {
+             PortfolioUtils.launchURL(url: Constants.resume);
+          },
+          child: Text(
+            AppLocalizations.of(context).contactMe,
+            style: GoogleFonts.muli(
+                color: Colors.white, fontSize: 16, fontWeight: FontWeight.w100),
+          ),
+        ),
+        Image.asset(
+          Constants.imageFlutterAvatar,
+          height: 300,
+          width: 300,
+        )
+      ],
     );
   }
 
@@ -124,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         Image.asset(
-          'assets/images/my.jpg',
+          Constants.mainImage,
           height: 500,
           width: 500,
         ),
@@ -136,43 +96,43 @@ class _HomeScreenState extends State<HomeScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             IconWithUrl(
-              imageUrl: 'assets/images/facebook.png',
-              url: 'https://www.facebook.com/shivams1110',
+              imageUrl: Constants.imageFacebook,
+              url: Constants.facebookUrl,
             ),
             SizedBox(
               width: 12,
             ),
             IconWithUrl(
-              imageUrl: 'assets/images/github.png',
-              url: 'https://github.com/shivams1110',
+              imageUrl: Constants.imageGithub,
+              url: Constants.githubUrl,
             ),
             SizedBox(
               width: 12,
             ),
             IconWithUrl(
-              imageUrl: 'assets/images/linkedin.png',
-              url: 'https://www.linkedin.com/in/shivamsharma11/',
+              imageUrl: Constants.imageLinkedin,
+              url: Constants.linkedinUrl,
             ),
             SizedBox(
               width: 12,
             ),
             IconWithUrl(
-              imageUrl: 'assets/images/instagram.png',
-              url: 'https://www.instagram.com/official.shivam/',
+              imageUrl: Constants.imageInstagram,
+              url: Constants.instagramUrl,
             ),
             SizedBox(
               width: 12,
             ),
             IconWithUrl(
-              imageUrl: 'assets/images/twitter.png',
-              url: 'https://twitter.com/shivams_me',
+              imageUrl: Constants.imageTwitter,
+              url: Constants.twitterUrl,
             ),
             SizedBox(
               width: 12,
             ),
             IconWithUrl(
-                imageUrl: 'assets/images/medium.png',
-                url: 'https://theshivamsharma.medium.com/'),
+                imageUrl: Constants.imageMedium,
+                url: Constants.mediumUrl),
           ],
         ),
       ],
