@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:portfolio/screen/landing_screen/home_screen.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:portfolio/localization/app_localization_delegate.dart';
+import 'package:portfolio/screen/home/home_screen.dart';
+import 'package:portfolio/screen/landing_screen/landing_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,14 +13,28 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Portfolio',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
-      localizationsDelegates:
-          AppLocalizations.localizationsDelegates, // Add this line
-      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: [
+        AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate
+      ],
+      supportedLocales: [const Locale('en', 'US')],
+      localeResolutionCallback:
+          (Locale locale, Iterable<Locale> supportedLocales) {
+        for (Locale supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode ||
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+
+        return supportedLocales.first;
+      },
     );
   }
 }

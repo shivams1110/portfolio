@@ -1,16 +1,30 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:portfolio/localization/translate_key.dart';
 import 'package:portfolio/resource/constant.dart';
 import 'package:portfolio/util/portfolio_utils.dart';
 import 'package:portfolio/widgets/icon_with_url.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-class HomeScreen extends StatefulWidget {
+class LandingScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _LandingScreenState createState() => _LandingScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _LandingScreenState extends State<LandingScreen> {
+  List<String> values = ['Android', 'Flutter', 'IOS'];
+  String value;
+
+  var index = 0;
+
+  @override
+  void initState() {
+    value = values[0];
+    Future.delayed(Duration(seconds: 2), animatedSwitcher);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool mediaQuery = MediaQuery.of(context).size.width > 900;
@@ -45,15 +59,32 @@ class _HomeScreenState extends State<HomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         Text(
-          AppLocalizations.of(context).myName,
+          "I'm",
           style: GoogleFonts.muli(
               color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
+        ),
+        Text(
+          TranslateKey.myName,
+          style: TextStyle(
+              fontFamily: 'Saman',
+              color: Colors.white,
+              fontSize: 48,
+              fontWeight: FontWeight.w100),
         ),
         SizedBox(
           height: 10,
         ),
+        // AnimatedSwitcher(
+        //   duration: Duration(milliseconds: 500),
+        //   child: Text(
+        //     value,
+        //     textAlign: TextAlign.end,
+        //     style: GoogleFonts.muli(
+        //         color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
+        //   ),
+        // ),
         Text(
-          AppLocalizations.of(context).developer,
+          TranslateKey.developer,
           textAlign: TextAlign.end,
           style: GoogleFonts.muli(
               color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
@@ -63,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         ElevatedButton(
           onPressed: () {
-             PortfolioUtils.launchURL(url: Constants.resume);
+            PortfolioUtils.launchURL(url: Constants.resume);
           },
           child: Text(
-            AppLocalizations.of(context).contactMe,
+            TranslateKey.contactMe,
             style: GoogleFonts.muli(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w100),
           ),
@@ -131,11 +162,22 @@ class _HomeScreenState extends State<HomeScreen> {
               width: 12,
             ),
             IconWithUrl(
-                imageUrl: Constants.imageMedium,
-                url: Constants.mediumUrl),
+                imageUrl: Constants.imageMedium, url: Constants.mediumUrl),
           ],
         ),
       ],
     );
+  }
+
+  void animatedSwitcher() {
+    setState(() {
+      if (values.length > index - 1) {
+        index++;
+      } else {
+        index = 0;
+      }
+      value = values[index];
+      Future.delayed(Duration(seconds: 2), animatedSwitcher);
+    });
   }
 }
