@@ -14,7 +14,7 @@ class LandingScreen extends StatefulWidget {
 
 class _LandingScreenState extends State<LandingScreen> {
   List<String> values = ['Android', 'Flutter', 'IOS'];
-  String value;
+  String? value;
 
   var index = 0;
 
@@ -60,7 +60,7 @@ class _LandingScreenState extends State<LandingScreen> {
       children: [
         Text(
           "I'm",
-          style: GoogleFonts.muli(
+          style: GoogleFonts.mulish(
               color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
         ),
         Text(
@@ -86,7 +86,7 @@ class _LandingScreenState extends State<LandingScreen> {
         Text(
           TranslateKey.developer,
           textAlign: TextAlign.end,
-          style: GoogleFonts.muli(
+          style: GoogleFonts.mulish(
               color: Colors.white, fontSize: 48, fontWeight: FontWeight.w100),
         ),
         SizedBox(
@@ -98,7 +98,7 @@ class _LandingScreenState extends State<LandingScreen> {
           },
           child: Text(
             TranslateKey.contactMe,
-            style: GoogleFonts.muli(
+            style: GoogleFonts.mulish(
                 color: Colors.white, fontSize: 16, fontWeight: FontWeight.w100),
           ),
         ),

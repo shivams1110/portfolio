@@ -7,7 +7,7 @@ class IconWithUrl extends StatelessWidget {
   final double size;
 
   const IconWithUrl(
-      {Key key, @required this.imageUrl, this.size = 30, @required this.url})
+      {Key? key, required this.imageUrl, this.size = 30, required this.url})
       : super(key: key);
 
   @override

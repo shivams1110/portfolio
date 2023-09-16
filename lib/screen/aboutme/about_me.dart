@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:portfolio/localization/translate_key.dart';
 
 class AboutMe extends StatelessWidget {
-  const AboutMe({Key key}) : super(key: key);
+  const AboutMe({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class AboutMe extends StatelessWidget {
             padding: const EdgeInsets.only(left: 32.0, top: 32.0),
             child: Text(
               'About Me',
-              style: GoogleFonts.muli(
+              style: GoogleFonts.mulish(
                   color: Colors.black,
                   fontSize: 48,
                   fontWeight: FontWeight.w100),
@@ -32,7 +32,7 @@ class AboutMe extends StatelessWidget {
             padding: EdgeInsets.all(36.0),
             child: Text(
               TranslateKey.aboutMe,
-              style: GoogleFonts.muli(
+              style: GoogleFonts.mulish(
                   color: Colors.black,
                   fontSize: 20,
                   fontWeight: FontWeight.w100),

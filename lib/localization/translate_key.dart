@@ -1,7 +1,7 @@
 import 'package:portfolio/localization/app_localization.dart';
 
 class TranslateKey {
-  static String translate(key) => AppLocalizations.instance.translate(key);
+  static String translate(key) => AppLocalizations.instance!.translate(key);
 
   static String get developer => translate('developer');
   static String get myName => translate('myName');

@@ -24,17 +24,24 @@ class MyApp extends StatelessWidget {
         GlobalWidgetsLocalizations.delegate
       ],
       supportedLocales: [const Locale('en', 'US')],
-      localeResolutionCallback:
-          (Locale locale, Iterable<Locale> supportedLocales) {
+      localeResolutionCallback: (locale, supportedLocales) {
         for (Locale supportedLocale in supportedLocales) {
-          if (supportedLocale.languageCode == locale.languageCode ||
+          if (supportedLocale.languageCode == locale!.languageCode ||
               supportedLocale.countryCode == locale.countryCode) {
             return supportedLocale;
           }
         }
-
         return supportedLocales.first;
       },
+      // localeResolutionCallback: (Locale locale, Iterable<Locale> supportedLocales) {
+      //   for (Locale supportedLocale in supportedLocales) {
+      //     if (supportedLocale.languageCode == locale.languageCode ||
+      //         supportedLocale.countryCode == locale.countryCode) {
+      //       return supportedLocale;
+      //     }
+      //   }
+      //   return supportedLocales.first;
+      // },
     );
   }
 }

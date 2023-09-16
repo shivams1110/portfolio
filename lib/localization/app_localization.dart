@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 class AppLocalizations {
 
   final Locale locale;
-  static AppLocalizations instance;
+  static AppLocalizations? instance;
   AppLocalizations(this.locale){
     instance = this;
   }
@@ -16,7 +16,7 @@ class AppLocalizations {
     return Localizations.of(context, AppLocalizations);
   }
 
-  Map<String, String> _sentences;
+  Map<String, String>? _sentences;
 
   Future<bool> load() async {
     String data = await rootBundle.loadString('assets/lang/${this.locale.languageCode}.json');
@@ -24,13 +24,13 @@ class AppLocalizations {
 
     this._sentences = new Map();
     _result.forEach((String key, dynamic value) {
-      this._sentences[key] = value.toString();
+      this._sentences![key] = value.toString();
     });
 
     return true;
   }
 
   String translate(String key) {
-    return this._sentences[key];
+    return this._sentences![key]!;
   }
 }
